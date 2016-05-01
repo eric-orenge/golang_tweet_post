@@ -9,6 +9,10 @@ import (
 )
 
 func main() {
+
+	// now := time.Now()
+	// secs := now.Unix()
+
 	//log file>output all into logs.text
 	f, er := os.OpenFile("logs/logs.text", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0664)
 	if er != nil {
@@ -16,13 +20,14 @@ func main() {
 	}
 	defer f.Close()
 
-	// log.SetOutput(f)
+	log.SetOutput(f)
 
 	//handle web requests
-	http.HandleFunc("/", handlers.PostTweet)
+	http.HandleFunc("/post", handlers.PostTweet)
 	err := http.ListenAndServe(":8080", nil)
 
 	if err != nil {
 		log.Fatal("Listen And Serve: ", err)
 	}
+
 }

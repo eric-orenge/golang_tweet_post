@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"log"
 	"net/http"
 )
 
@@ -25,6 +26,16 @@ func RespondSuccess(w http.ResponseWriter, r *http.Request, data interface{}) er
 		"message": data,
 	}
 	return json.NewEncoder(w).Encode(resp)
+}
+func GenerateKey() (int, error) {
+	key := make([]byte, 64)
+
+	oauth_nonce, err := rand.Read(key)
+	if err != nil {
+		return 0, err
+		log.Fatal("Err generating key")
+	}
+	return oauth_nonce, nil
 }
 
 //password encryption and decryption

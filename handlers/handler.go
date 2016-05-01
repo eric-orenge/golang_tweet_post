@@ -1,37 +1,58 @@
 package handlers
 
 import (
+	"log"
 	"net/http"
-	"os"
 
+	"github.com/eric-orenge/tweet_test/model"
 	"github.com/eric-orenge/tweet_test/utils"
 )
 
-var consumerKey string
-var consumerSecret string
-var accessSecret string
-var accessToken string
-var twitterURL string
+var consumerKey = "1n5knNIgqWdAYNRt88jLmf08f"
+var consumerSecret = "5uTZB7yThyDE5GR4rHzn6M3re3xDLrC6S9JbX1IR7Xg5WpDUnR"
+var accessToken = "312661274-2UIFgzw89B9r3B91nTu4cM52hNqQlm8U4f3iniPn"
+var accessSecret = "yotx0h9yWAwjqMOaOu6xvDXELgQdfl11Ump4ICZlq6mjT"
+
+var t model.TwitterAccess
 
 func init() {
-	accessToken = os.Getenv("TwitterAccessToken")
-	accessSecret = os.Getenv("TwitterAccessSecret")
-	consumerKey = os.Getenv("TwitterConsumerKey")
-	consumerSecret = os.Getenv("TwitterConsumerSecret")
+	// accessToken = os.Getenv("TwitterAccessToken")
+	// accessSecret = os.Getenv("TwitterAccessSecret")
+	// consumerKey = os.Getenv("TwitterConsumerKey")
+	// consumerSecret = os.Getenv("TwitterConsumerSecret")
 
-	// accessToken = "312661274-2UIFgzw89B9r3B91nTu4cM52hNqQlm8U4f3iniPn"
-	// accessSecret = "yotx0h9yWAwjqMOaOu6xvDXELgQdfl11Ump4ICZlq6mjT"
+	t.ConsumerKey = consumerKey
+	t.ConsumerSecret = consumerSecret
 
-	// consumerKey = "1n5knNIgqWdAYNRt88jLmf08f"
-	// consumerSecret = "5uTZB7yThyDE5GR4rHzn6M3re3xDLrC6S9JbX1IR7Xg5WpDUnR"
+	t.AccessToken = accessToken
+	t.AccessSecret = accessSecret
+	t.Debug = false
 }
 
-func unpackTweet(w http.ResponseWriter, r *http.Request) {
-	tweet := r.FormValue("message")
-	if len(tweet) > 140 {
-		utils.RespondErr(w, r, "Invalid message length")
-	}
+func unpackTweet(w http.ResponseWriter, r *http.Request) (string, error) {
+
+	r.ParseForm()
+	message := r.FormValue("message")
+
+	// if len(message) > 140 || len(message) == 0 {
+	// 	return "", errors.New("Invalid message length")
+	// }
+	log.Println("message is ", message)
+	return message, nil
 }
 func PostTweet(w http.ResponseWriter, r *http.Request) {
-	utils.RespondErr(w, r, consumerSecret)
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	status, er := unpackTweet(w, r)
+	if er != nil {
+		utils.RespondErr(w, r, "Invalid message length")
+		return
+	}
+	resp, err := t.Tweet(status)
+	if err != nil {
+		log.Printf("%s", err)
+
+		utils.RespondErr(w, r, "Unable to post tweet")
+		return
+	}
+	utils.RespondSuccess(w, r, resp)
 }

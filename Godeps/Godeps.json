@@ -5,5 +5,10 @@
 	"Packages": [
 		"./..."
 	],
-	"Deps": []
+	"Deps": [
+		{
+			"ImportPath": "github.com/mrjones/oauth",
+			"Rev": "31f1e8e5addda51bc50ebfc8bb930d4642372654"
+		}
+	]
 }
