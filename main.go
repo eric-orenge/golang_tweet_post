@@ -19,7 +19,7 @@ func main() {
 	// log.SetOutput(f)
 
 	//handle web requests
-	http.HandleFunc("/post", handlers.PostTweet)
+	http.HandleFunc("/", handlers.PostTweet)
 	err := http.ListenAndServe(":8080", nil)
 
 	if err != nil {

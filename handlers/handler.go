@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"net/http"
+	"os"
 
 	"github.com/eric-orenge/tweet_test/utils"
 )
@@ -13,12 +14,16 @@ var accessToken string
 var twitterURL string
 
 func init() {
+	accessToken = os.Getenv("TwitterAccessToken")
+	accessSecret = os.Getenv("TwitterAccessSecret")
+	consumerKey = os.Getenv("TwitterConsumerKey")
+	consumerSecret = os.Getenv("TwitterConsumerSecret")
 
-	accessToken = "312661274-2UIFgzw89B9r3B91nTu4cM52hNqQlm8U4f3iniPn"
-	accessSecret = "yotx0h9yWAwjqMOaOu6xvDXELgQdfl11Ump4ICZlq6mjT"
+	// accessToken = "312661274-2UIFgzw89B9r3B91nTu4cM52hNqQlm8U4f3iniPn"
+	// accessSecret = "yotx0h9yWAwjqMOaOu6xvDXELgQdfl11Ump4ICZlq6mjT"
 
-	consumerKey = "1n5knNIgqWdAYNRt88jLmf08f"
-	consumerSecret = "5uTZB7yThyDE5GR4rHzn6M3re3xDLrC6S9JbX1IR7Xg5WpDUnR"
+	// consumerKey = "1n5knNIgqWdAYNRt88jLmf08f"
+	// consumerSecret = "5uTZB7yThyDE5GR4rHzn6M3re3xDLrC6S9JbX1IR7Xg5WpDUnR"
 }
 
 func unpackTweet(w http.ResponseWriter, r *http.Request) {
@@ -28,5 +33,5 @@ func unpackTweet(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func PostTweet(w http.ResponseWriter, r *http.Request) {
-	utils.RespondErr(w, r, "Invalid message length")
+	utils.RespondErr(w, r, consumerSecret)
 }
