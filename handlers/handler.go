@@ -8,10 +8,10 @@ import (
 	"github.com/eric-orenge/tweet_test/utils"
 )
 
-var consumerKey = "1n5knNIgqWdAYNRt88jLmf08f"
-var consumerSecret = "5uTZB7yThyDE5GR4rHzn6M3re3xDLrC6S9JbX1IR7Xg5WpDUnR"
-var accessToken = "312661274-2UIFgzw89B9r3B91nTu4cM52hNqQlm8U4f3iniPn"
-var accessSecret = "yotx0h9yWAwjqMOaOu6xvDXELgQdfl11Ump4ICZlq6mjT"
+var consumerKey = ""
+var consumerSecret = ""
+var accessToken = ""
+var accessSecret = ""
 
 var t model.TwitterAccess
 

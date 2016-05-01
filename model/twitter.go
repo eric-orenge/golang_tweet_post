@@ -4,7 +4,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/eric-orenge/tweet_test/Godeps/_workspace/src/github.com/mrjones/oauth"
+	"github.com/mrjones/oauth"
 )
 
 type Tweet struct {
