@@ -137,3 +137,15 @@
 	Response Body: {"errors":[{"code":170,"message":"Missing required parameter: status."}]}
 	Request Headers: 
 2016/05/01 17:31:26 message is  Api twiitter test
+2016/05/01 17:49:12 message is  
+2016/05/01 17:49:12 message is  Rains
+2016/05/01 17:49:14 LOG_FATAL HTTP response is not 200/OK as expected. Actual response: 
+	Response Status: '403 Forbidden'
+	Response Code: 403
+	Response Body: {"errors":[{"code":170,"message":"Missing required parameter: status."}]}
+	Request Headers: 
+2016/05/01 17:49:14 HTTP response is not 200/OK as expected. Actual response: 
+	Response Status: '403 Forbidden'
+	Response Code: 403
+	Response Body: {"errors":[{"code":170,"message":"Missing required parameter: status."}]}
+	Request Headers: 
