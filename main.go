@@ -26,7 +26,7 @@ func main() {
 	http.Handle("/", http.FileServer(http.Dir("./public")))
 
 	http.HandleFunc("/post", handlers.PostTweet)
-	err := http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 
 	if err != nil {
 		log.Fatal("Listen And Serve: ", err)
