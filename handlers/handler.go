@@ -28,5 +28,5 @@ func unpackTweet(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func PostTweet(w http.ResponseWriter, r *http.Request) {
-
+	utils.RespondErr(w, r, "Invalid message length")
 }

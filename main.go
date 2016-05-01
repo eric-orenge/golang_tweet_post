@@ -16,7 +16,7 @@ func main() {
 	}
 	defer f.Close()
 
-	log.SetOutput(f)
+	// log.SetOutput(f)
 
 	//handle web requests
 	http.HandleFunc("/post", handlers.PostTweet)
